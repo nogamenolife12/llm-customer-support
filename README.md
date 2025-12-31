@@ -29,6 +29,7 @@ OPENAI_API_KEY="your_key_here"
 OPENAI_MODEL="gpt-3.5-turbo"
 ```
 
+
     4.Run migrations: npx prisma migrate dev
 
     5.Start the server: npm run dev
@@ -44,6 +45,7 @@ OPENAI_MODEL="gpt-3.5-turbo"
 ```env
 VITE_API_URL="http://localhost:3000"
 ```
+
 
 
     4.Start the app: npm run dev
