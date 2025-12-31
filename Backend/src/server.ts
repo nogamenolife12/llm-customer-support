@@ -4,7 +4,7 @@ const app = express();
 import chatRouter from "./routes/chat.route.js";
 
 app.use(cors({
-    origin: "*",
+    origin: "https://llm-customer-support.vercel.app/",
     methods: ["GET", "POST"],
 }))
 app.use(express.json());
