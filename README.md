@@ -6,15 +6,15 @@ Live Demo: https://llm-customer-support.vercel.app/
 Backend API: https://llm-customer-support.onrender.com
 
 ## Quick Start
-1. Prerequisites
-    1.Node.js (v18 or higher)
-    2.PostgreSQL instance (local or hosted on Supabase/Aiven)
-    3.OpenAI API Key
+1. **Prerequisites**
+-Node.js (v18 or higher)
+-PostgreSQL instance (local or hosted on Supabase/Aiven)
+-OpenAI API Key
 
-2. Backend Setup
-    1.Navigate to the /backend folder.
-    2.Install dependencies: npm install
-    3.Create a .env file:
+2. **Backend Setup**
+-Navigate to the /backend folder.
+-Install dependencies: npm install
+-Create a .env file:
 
 ```env
 PORT=3000
@@ -23,18 +23,18 @@ OPENAI_API_KEY="your_key_here"
 OPENAI_MODEL="gpt-3.5-turbo"
 ```
 
-    4.Run migrations: npx prisma migrate dev
-    5.Start the server: npm run dev
+-Run migrations: npx prisma migrate dev
+-Start the server: npm run dev
 
-3. Frontend Setup
-    1.Navigate to the /frontend folder.
-    2.Install dependencies: npm install
-    3.Create a .env file:
+3. **Frontend Setup**
+-Navigate to the /frontend folder.
+-Install dependencies: npm install
+-Create a .env file:
 
 ```env
 VITE_API_URL="http://localhost:3000"
 ```
-    4.Start the app: npm run dev
+-Start the app: npm run dev
 
 ## Architecture Overview
 The project is structured with a clear separation of concerns to ensure scalability and ease of maintenance.
