@@ -4,7 +4,7 @@ const app = express();
 import chatRouter from "./routes/chat.route.js";
 
 app.use(cors({
-    origin: ['http://localhost:5173/', 'https://llm-customer-support.onrender.com'],
+    origin: "*",
     methods: ["GET", "POST"],
 }))
 app.use(express.json());
