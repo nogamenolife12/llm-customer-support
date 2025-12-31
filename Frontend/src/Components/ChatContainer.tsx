@@ -88,7 +88,7 @@ export const ChatContainer: React.FC = () => {
     };
 
   return (
-    <div className="flex flex-col h-162.5 max-w-2xl mx-auto border border-gray-200 rounded-2xl shadow-xl bg-white overflow-hidden transition-all">
+    <div className="flex flex-col h-full max-w-2xl mx-auto border border-gray-200 rounded-2xl shadow-xl bg-white overflow-hidden transition-all">
       {/* Header */}
       <div className="px-6 py-4 border-b flex justify-between items-center bg-white/80 backdrop-blur-md sticky top-0 z-10">
         <div>
