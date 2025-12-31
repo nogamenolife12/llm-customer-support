@@ -7,11 +7,13 @@ Backend API: https://llm-customer-support.onrender.com
 
 ## Quick Start
 1. **Prerequisites**
+
 -Node.js (v18 or higher)
 -PostgreSQL instance (local or hosted on Supabase/Aiven)
 -OpenAI API Key
 
 2. **Backend Setup**
+
 -Navigate to the /backend folder.
 -Install dependencies: npm install
 -Create a .env file:
@@ -23,10 +25,12 @@ OPENAI_API_KEY="your_key_here"
 OPENAI_MODEL="gpt-3.5-turbo"
 ```
 
+
 -Run migrations: npx prisma migrate dev
 -Start the server: npm run dev
 
 3. **Frontend Setup**
+
 -Navigate to the /frontend folder.
 -Install dependencies: npm install
 -Create a .env file:
@@ -34,6 +38,7 @@ OPENAI_MODEL="gpt-3.5-turbo"
 ```env
 VITE_API_URL="http://localhost:3000"
 ```
+
 -Start the app: npm run dev
 
 ## Architecture Overview
