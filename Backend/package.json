@@ -5,6 +5,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "openai": "^6.15.0",
     "pg": "^8.16.3"
   },
   "name": "backend",
@@ -13,6 +14,7 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
+    "@types/express": "^5.0.6",
     "@types/node": "^25.0.3",
     "@types/pg": "^8.16.0",
     "prisma": "^7.2.0",

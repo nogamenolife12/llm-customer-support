@@ -1,4 +1,3 @@
-import { Sender } from "../../generated/prisma/index.js";
 import { prisma } from  "../db/prisma.js";
 
 async function seed(){
