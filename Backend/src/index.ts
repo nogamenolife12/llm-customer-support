@@ -16,6 +16,7 @@ app.use((err: any, req: any, res: any, next: any) => {
     });
 });
 
+app.get("/health", (req, res) => res.status(200).send("OK"));
 
 app.listen(Number(PORT), '0.0.0.0', () => {
     console.log(`Server is running on port ${PORT}`);
