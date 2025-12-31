@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://llm-customer-support.onrender.com";
 
 export async function fetchConversation(conversationID: string) {
   const res = await fetch(`${API_BASE}/chat/${conversationID}`);

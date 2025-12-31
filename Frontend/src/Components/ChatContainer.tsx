@@ -48,8 +48,9 @@ export const ChatContainer: React.FC = () => {
     setInput("");
     setLoading(true);
 
+    
     try {
-      const res = await fetch("http://localhost:3000/chat/message", {
+      const res = await fetch("https://llm-customer-support.onrender.com/chat/message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMessage.text, conversationID }),
@@ -70,7 +71,7 @@ export const ChatContainer: React.FC = () => {
       setMessages((prev) => [...prev, aiMessage]);
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      alert((err as Error).message || "Failed to send message");
     } finally {
       setLoading(false);
     }
