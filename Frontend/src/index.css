@@ -55,6 +55,29 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.leading-relaxed strong {
+  font-weight: 700;
+}
+
+.leading-relaxed ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.leading-relaxed li {
+  margin-bottom: 0.25rem;
+}
+
+.leading-relaxed p {
+  margin-bottom: 0.75rem;
+}
+
+.leading-relaxed p:last-child {
+  margin-bottom: 0;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

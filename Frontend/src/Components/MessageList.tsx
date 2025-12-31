@@ -1,5 +1,6 @@
-import React , {useEffect , useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import type { Message } from "../Types/types.ts";
+import ReactMarkdown from 'react-markdown';
 
 type props = {
     messages: Message[];
@@ -31,7 +32,10 @@ export const MessageList: React.FC<props> = ({ messages }) => {
                 : "bg-gray-100 text-gray-800 rounded-2xl rounded-tl-none border border-gray-200"
             }`}
           >
-            <p className="text-sm leading-relaxed">{msg.text}</p>
+            <div className="text-sm leading-relaxed">
+               <ReactMarkdown>{msg.text}</ReactMarkdown>
+            </div>
+            
             <span className={`text-[10px] mt-1 block opacity-60 ${msg.sender === "user" ? "text-right" : "text-left"}`}>
                {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             </span>
