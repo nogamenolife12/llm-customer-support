@@ -7,18 +7,14 @@ Backend API: https://llm-customer-support.onrender.com
 
 ## Quick Start
 1. Prerequisites
-Node.js (v18 or higher)
-
-PostgreSQL instance (local or hosted on Supabase/Aiven)
-
-OpenAI API Key
+    1.Node.js (v18 or higher)
+    2.PostgreSQL instance (local or hosted on Supabase/Aiven)
+    3.OpenAI API Key
 
 2. Backend Setup
-Navigate to the /backend folder.
-
-Install dependencies: npm install
-
-Create a .env file:
+    1.Navigate to the /backend folder.
+    2.Install dependencies: npm install
+    3.Create a .env file:
 
 ```env
 PORT=3000
@@ -27,21 +23,18 @@ OPENAI_API_KEY="your_key_here"
 OPENAI_MODEL="gpt-3.5-turbo"
 ```
 
-Run migrations: npx prisma migrate dev
-
-Start the server: npm run dev
+    4.Run migrations: npx prisma migrate dev
+    5.Start the server: npm run dev
 
 3. Frontend Setup
-Navigate to the /frontend folder.
-
-Install dependencies: npm install
-
-Create a .env file:
+    1.Navigate to the /frontend folder.
+    2.Install dependencies: npm install
+    3.Create a .env file:
 
 ```env
 VITE_API_URL="http://localhost:3000"
-Start the app: npm run dev
 ```
+    4.Start the app: npm run dev
 
 ## Architecture Overview
 The project is structured with a clear separation of concerns to ensure scalability and ease of maintenance.
@@ -63,7 +56,7 @@ Hooks & State: Manages chat history and persistence using localStorage for sessi
 Markdown Rendering: Integration of react-markdown to ensure AI responses are beautifully formatted.
 
 ## Key Features & "Idiot-Proofing" (Robustness)
-To meet the requirement of a "Founding Engineer," I implemented several layers of protection against common failures:
+I implemented several layers of protection against common failures:
 
 Input Validation:
 
@@ -88,14 +81,14 @@ Graceful Error Handling:
 Custom AppError class differentiates between operational errors (4xx) and unexpected server errors (5xx), ensuring the user always receives a helpful message instead of a raw stack trace.
 
 ## LLM Notes
-Provider: OpenAI (gpt-3.5-turbo or gpt-4).
+Provider: groq (llama-3.3-70b-versatile).
 
 Context Management: The agent is seeded with a STORE_CONTEXT containing shipping and return policies.
 
 Conversation History: The backend fetches and passes previous messages in the array to provide the LLM with full context for follow-up questions.
 
 ## Trade-offs & "If I Had More Time..."
-Redis Caching: For a production app at Spur's scale, I would implement Redis to cache frequently asked FAQ responses to save on LLM costs and latency.
+Redis Caching: I would implement Redis to cache frequently asked FAQ responses to save on LLM costs and latency.
 
 Streaming: I would implement Server-Sent Events (SSE) to stream the AI response character-by-character for a better "typing" experience.
 
