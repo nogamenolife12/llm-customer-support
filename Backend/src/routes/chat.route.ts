@@ -7,7 +7,8 @@ const router = express.Router();
 router.use(express.json());
 
 //GET /chat/:conversationID
-router.get('/:conversationID', async(req,res)=>{
+router.get('/:conversationID', async(req,res,next)=>{
+    try{
     const {conversationID} = req.params;
         //validating conversationID
         validateConversationID(conversationID);
@@ -27,7 +28,9 @@ router.get('/:conversationID', async(req,res)=>{
         return res.status(200).json({
             conversationID: response.id,
             messages: messages,
-        })
+        })}catch(err){
+            next(err);
+        }
 })
 
 //POST /chat/message
@@ -36,7 +39,6 @@ router.post('/message',async (req,res,next)=>{
     console.log("Message:", req.body?.message);
     console.log("ConversationID:", req.body?.conversationID);
     const {message , conversationID } = req.body;
-    
         //we are validating the inputs here
     try{
         validator(message, conversationID);

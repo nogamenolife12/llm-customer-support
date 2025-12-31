@@ -18,7 +18,7 @@ export const MessageInput: React.FC<Props> = ({ input, setInput, sendMessage, lo
           onKeyDown={(e) => e.key === "Enter" && !loading && sendMessage()}
           disabled={loading}
           placeholder="Type a message..."
-          className="w-full pl-4 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-gray-400
+          className="w-full ml-2 pl-4 pr-18 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-gray-400
           text-gray-950"
         />
         <button

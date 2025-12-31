@@ -24,7 +24,16 @@ Always adhere to these guidelines while assisting customers.
 
 const chatService = async(message:string, conversationID?:string)=>{
     let conversationIdToUse = conversationID;
-
+//If conversationID is provided, verify it exists
+    if (conversationID) {
+        const existing = await prisma.conversation.findUnique({
+            where: { id: conversationID }
+        });
+        
+        if (!existing) {
+            throw new AppError("Conversation not found. Please start a new chat.", 404);
+        }
+    }
 //If no conversationID is provided, create a new conversation
     if(conversationID == undefined || conversationID == null){
         const conversation = await prisma.conversation.create({
