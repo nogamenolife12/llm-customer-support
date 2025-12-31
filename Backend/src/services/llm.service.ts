@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-
+import { AppError } from "../utils/appError.js";
 const apiKey = process.env.OPENAI_API_KEY;
 if(!apiKey){
     throw new Error("OPENAI_API_KEY environment variable is not set.");
@@ -31,6 +31,6 @@ export async function llmReply({messages,model = `${process.env.OPENAI_MODEL}` }
         return response.choices[0]?.message?.content ?? "Sorry , I could not generate a response.";
     }catch(err){
         console.error("LLM Service Error:", err);
-        throw new Error("Failed to get response from LLM");
+        throw new AppError("Our Agent is taking a nap, please try again later", 503);
     }
 }
