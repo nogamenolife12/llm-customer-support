@@ -43,10 +43,7 @@ router.post('/message',async (req,res,next)=>{
     try{
         validator(message, conversationID);
         console.log("Validation successful");
-    }catch(err){
-        next(err);
-    }
-    try{
+    
         //Call service logic
         let response = await chatService(message,conversationID);
         console.log("Service response:", response);
@@ -54,8 +51,7 @@ router.post('/message',async (req,res,next)=>{
         //Send success response
         res.status(200).json(response);
     }catch(err){
-        console.error("Error occurred:", err);
-        res.status(400).send({error: "Our Agent is taking a nap , please try again", message: (err as Error).message});
+        next(err);
     }
 })
 
