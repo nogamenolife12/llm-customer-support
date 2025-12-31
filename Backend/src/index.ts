@@ -7,6 +7,12 @@ const PORT = process.env.PORT || 3000;
 app.use((err: any, req: any, res: any, next: any) => {
     console.log(err);
 
+    if (err.type === 'entity.too.large') {
+        return res.status(413).json({ 
+            error: "The message is way too large for the server to process." 
+        });
+    }
+    
     if (err instanceof AppError) {
         return res.status(err.statusCode).json({ error: err.message });
     }
