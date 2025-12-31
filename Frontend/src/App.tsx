@@ -9,7 +9,7 @@ function App() {
           Support <span className="text-blue-500">AI</span>
         </h1>
         <p className="mt-2 text-gray-400 font-medium">
-          Instant answers to your technical questions.
+          How can i help you?.
         </p>
       </div>
 
@@ -18,7 +18,7 @@ function App() {
       </main>
 
       <footer className="mt-8 text-gray-500 text-xs">
-        &copy; {new Date().getFullYear()} Support AI.
+        &copy; {new Date().getFullYear()} TechWorld.
       </footer>
     </div>
   );
