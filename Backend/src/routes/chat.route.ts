@@ -31,15 +31,19 @@ router.get('/:conversationID', async(req,res)=>{
 })
 
 //POST /chat/message
-router.post('/message',async (req,res)=>{
+router.post('/message',async (req,res,next)=>{
     console.log("Raw body:", req.body);
     console.log("Message:", req.body?.message);
     console.log("ConversationID:", req.body?.conversationID);
     const {message , conversationID } = req.body;
     
         //we are validating the inputs here
+    try{
         validator(message, conversationID);
         console.log("Validation successful");
+    }catch(err){
+        next(err);
+    }
     try{
         //Call service logic
         let response = await chatService(message,conversationID);
@@ -49,7 +53,7 @@ router.post('/message',async (req,res)=>{
         res.status(200).json(response);
     }catch(err){
         console.error("Error occurred:", err);
-        res.status(400).send({error: "AN ERROR OCCURED", message: (err as Error).message});
+        res.status(400).send({error: "Our Agent is taking a nap , please try again", message: (err as Error).message});
     }
 })
 

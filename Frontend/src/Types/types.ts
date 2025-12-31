@@ -1,6 +1,6 @@
 export type Message = {
   id: string;
-  sender: "user" | "ai";
+  sender: "user" | "ai" | "system";
   text: string;
   createdAt: string;
 };

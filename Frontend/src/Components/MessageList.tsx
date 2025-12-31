@@ -27,9 +27,11 @@ export const MessageList: React.FC<props> = ({ messages }) => {
         >
           <div
             className={`max-w-[85%] px-4 py-3 shadow-sm transition-all duration-300 ${
-              msg.sender === "user" 
-                ? "bg-blue-600 text-white rounded-2xl rounded-tr-none" 
-                : "bg-gray-100 text-gray-800 rounded-2xl rounded-tl-none border border-gray-200"
+                msg.sender === "user"
+                ? "bg-blue-600 text-white rounded-2xl rounded-tr-none"
+                : msg.sender === "ai"
+                ? "bg-gray-100 text-gray-800 rounded-2xl rounded-tl-none border border-gray-200"
+                : "bg-red-100 text-red-700 rounded-xl border border-red-300 mx-auto text-center"
             }`}
           >
             <div className="text-sm leading-relaxed">

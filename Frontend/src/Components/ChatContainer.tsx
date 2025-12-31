@@ -70,8 +70,14 @@ export const ChatContainer: React.FC = () => {
       };
       setMessages((prev) => [...prev, aiMessage]);
     } catch (err) {
-      console.error(err);
-      alert((err as Error).message || "Failed to send message");
+    //   console.error(err);
+    //   alert((err as Error).message || "Failed to send message");
+    setMessages((prev)=>[...prev,{
+        id: Date.now().toString(),
+        sender: "system",
+        text: (err as Error).message || "Failed to send message",
+        createdAt: new Date().toISOString(),
+    }])
     } finally {
       setLoading(false);
     }
