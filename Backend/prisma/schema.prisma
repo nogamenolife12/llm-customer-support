@@ -4,7 +4,7 @@ generator client {
   engineType = "library"
   binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
-
+ 
 datasource db {
   provider = "postgresql"
 }
