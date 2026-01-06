@@ -1,4 +1,4 @@
-const API_BASE = "https://llm-customer-support.onrender.com";
+// const API_BASE = "https://llm-customer-support.onrender.com";
 const LOCAL_API_BASE = "http://localhost:3000";
 
 export async function fetchConversation(conversationID: string) {

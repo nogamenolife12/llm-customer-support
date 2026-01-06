@@ -48,7 +48,7 @@ export const ChatContainer: React.FC = () => {
     setInput("");
     setLoading(true);
 
-    const fetchAPI = "https://llm-customer-support.onrender.com/chat/message"
+    // const fetchAPI = "https://llm-customer-support.onrender.com/chat/message"
     try {
       const data = await sendChatMessage(input, conversationID || undefined); // Fetching from local backend
       setConversationID(data.conversationID);
