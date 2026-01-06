@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import type { Message } from "../Types/types.ts";
 import { MessageList } from "./MessageList";
 import { MessageInput } from "./MessageInput";
-import { fetchConversation } from "../services/ChatApi.ts";
+import { fetchConversation, sendChatMessage} from "../services/ChatApi.ts";
 
 export const ChatContainer: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -48,17 +48,9 @@ export const ChatContainer: React.FC = () => {
     setInput("");
     setLoading(true);
 
-    
+    const fetchAPI = "https://llm-customer-support.onrender.com/chat/message"
     try {
-      const res = await fetch("https://llm-customer-support.onrender.com/chat/message", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMessage.text, conversationID }),
-      });
-      const data = await res.json();
-      if(!res.ok){
-        throw new Error(data.error || "Something went wrong");
-      }
+      const data = await sendChatMessage(input, conversationID || undefined); // Fetching from local backend
       setConversationID(data.conversationID);
       localStorage.setItem("conversationID", data.conversationID);
 
@@ -70,8 +62,6 @@ export const ChatContainer: React.FC = () => {
       };
       setMessages((prev) => [...prev, aiMessage]);
     } catch (err) {
-    //   console.error(err);
-    //   alert((err as Error).message || "Failed to send message");
     setMessages((prev)=>[...prev,{
         id: Date.now().toString(),
         sender: "system",

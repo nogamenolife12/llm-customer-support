@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import { AppError } from "../utils/appError.js";
-const apiKey = process.env.OPENAI_API_KEY;
+import { config } from "../../config/config.js";
+const apiKey = config.openaiApiKey;
 if(!apiKey){
     throw new Error("OPENAI_API_KEY environment variable is not set.");
 }
@@ -20,7 +21,6 @@ interface LLMService {
     
 
 export async function llmReply({messages,model = `${process.env.OPENAI_MODEL}` }: LLMService): Promise<string> {
-
 
     try{
         const response = await client.chat.completions.create({

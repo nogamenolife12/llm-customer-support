@@ -1,9 +1,10 @@
-import 'dotenv/config';
 import { app } from "./server.js";
 import { AppError } from './utils/appError.js';
+import { config } from "../config/config.js";
+import { redisClient } from "./cache/redis.js";
+import { start } from "node:repl";
 
-const PORT = process.env.PORT || 3000;
-
+const PORT = config.port || 3000;
 app.use((err: any, req: any, res: any, next: any) => {
     console.log(err);
 
@@ -24,7 +25,23 @@ app.use((err: any, req: any, res: any, next: any) => {
 
 app.get("/health", (req, res) => res.status(200).send("OK"));
 
-app.listen(Number(PORT), '0.0.0.0', () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+
+async function startServer() {
+    try{
+        console.log("Connecting to Redis...");
+        await redisClient.connect();
+        console.log("Connected to Redis");
+        
+        app.listen(Number(PORT), '0.0.0.0', () => {
+            console.log(`Server is running on port ${PORT}`);
+        });
+    }catch(err){
+        console.error("Critical Error:", err);
+        process.exit(1);
+    }
+}
+
+startServer();
+
+
 

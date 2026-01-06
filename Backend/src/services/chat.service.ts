@@ -2,6 +2,7 @@ import { prisma } from "../db/prisma.js";
 import { Sender } from "@prisma/client";
 import { llmReply } from "./llm.service.js";
 import { AppError } from "../utils/appError.js";
+import { redisClient } from "../cache/redis.js";
 
 type ChatMessage = { role: 'user' | 'assistant' | 'system'; content: string };
 const STORE_CONTEXT = `
@@ -23,7 +24,19 @@ Always adhere to these guidelines while assisting customers.
 `;
 
 const chatService = async(message:string, conversationID?:string)=>{
+
     let conversationIdToUse = conversationID;
+    let isNewChat = !conversationID;
+    const cacheKey = `faq:${message.toLowerCase().trim()}`;
+
+    if(isNewChat){
+        const cachedFaq = await redisClient.get(cacheKey);
+        if(cachedFaq){
+            console.log("Cache hit: Returning cached FAQ response");
+            return JSON.parse(cachedFaq);
+        }
+    }
+
 //If conversationID is provided, verify it exists
     if (conversationID) {
         const existing = await prisma.conversation.findUnique({
@@ -86,12 +99,21 @@ const chatService = async(message:string, conversationID?:string)=>{
     })
 
 //Return response
-    return {
+    const finalResponse = {
         conversationID: conversationIdToUse,
         messageID: userMessage.id,
         aiReply: llmResponse,
         status: "Message received"
     };
+
+    if(isNewChat){
+        await redisClient.set(cacheKey, JSON.stringify(finalResponse), {
+            EX: 86400, // Cache for 24 hours
+        });
+        console.log("Cache miss: Saving in cache");
+    }
+    
+    return finalResponse;
 }
 
 const getConversation = async (conversationID:string) => {

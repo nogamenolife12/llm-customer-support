@@ -1,7 +1,8 @@
 const API_BASE = "https://llm-customer-support.onrender.com";
+const LOCAL_API_BASE = "http://localhost:3000";
 
 export async function fetchConversation(conversationID: string) {
-  const res = await fetch(`${API_BASE}/chat/${conversationID}`);
+  const res = await fetch(`${LOCAL_API_BASE}/chat/${conversationID}`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch conversation");
@@ -14,7 +15,7 @@ export async function sendChatMessage(
   message: string,
   conversationID?: string
 ) {
-  const res = await fetch(`${API_BASE}/chat/message`, {
+  const res = await fetch(`${LOCAL_API_BASE}/chat/message`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message, conversationID }),
